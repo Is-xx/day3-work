@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="test">
+
+    父组件的值：{{ username }}
+    <hr>
+    <com @btn="clickMe"></com>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+    let com ={
+        template: `
+            <div>
+            这是子组件
+            <button @click="clickBtn">按钮</button>
+            </div>
+        `,
+        methods: {
+            clickBtn(){
+                this.$emit('btn', '百知教育')
+            }
+        }
+    }
+    new Vue({
+        el: '#test',
+        data: {
+            username: '小兰',
+        },
+        methods: {
+            clickMe(username){
+                this.username = username;
+            }
+        },
+        components: {
+            'com': com,
+        },
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="test">
+
+    <span id="span">{{ num }}</span>
+    <h3 @click="change" id="h3">{{ num }}</h3>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test',
+        data: {
+            num: 20,
+        },
+        methods: {
+            change(){
+                this.num++;
+            },
+        },
+
+        beforeCreate(){
+            console.log('beforeCreate:' + this.num)
+        },
+        created(){
+            console.log('created:' + this.num)
+        },
+        beforeMount(){
+            console.log('beforeMount:' + document.getElementById('span').innerText)
+        },
+        mounted(){
+            console.log('mounted:' + document.getElementById('span').innerText)
+        },
+        beforeUpdate(){
+            console.log('beforeUpdate:' + this.num)
+            console.log('beforeUpdate:' + document.getElementById('h3').innerText)
+        },
+        updated(){
+            console.log('update:' + this.num)
+            console.log('update:' + document.getElementById('h3').innerText)
+        },
+        beforeDestroy(){},
+        destroy(){}
+    })
+</script>
+
+</body>
+</html>

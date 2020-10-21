@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="test">
+
+    姓：<input type="text" v-model="family_name">
+    名：<input type="text" v-model="given_name">
+    <p>全名：{{ name }}</p>
+    <hr>
+    姓名：<input type="text" v-model="compellation"><br>
+    姓：{{ f_name }}
+    名：{{ g_name }}
+
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test',
+        data: {
+            family_name: '',
+            given_name: '',
+            compellation: '',
+            f_name: '',
+            g_name: '',
+        },
+        methods: {
+            add_num(){
+                this.num++;
+            },
+        },
+        computed: {
+            name(){
+                return this.family_name + this.given_name;
+            },
+        },
+        watch: {
+            compellation(){
+                let name = this.compellation.split(' ')
+                this.f_name = name[0]
+                this.g_name = name[1]
+            },
+        },
+    })
+</script>
+
+</body>
+</html>

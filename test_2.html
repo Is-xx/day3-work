@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="test">
+
+    <p @click="add_num">{{ num }}</p>
+    <p>十位：{{ decade }}</p>
+    <p>个位：{{ unit }}</p>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#test',
+        data: {
+            num: 20,
+            decade: '2',
+            unit: '0',
+        },
+        methods: {
+            add_num(){
+                this.num++;
+            },
+        },
+        watch: {
+            num(){
+                this.decade = parseInt(this.num / 10);
+                this.unit = this.num % 10;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
